@@ -1,0 +1,81 @@
+//This program should be able to calculate a fruit harvester's pay by collecting variables such as type of fruit harvested and quantity harvested.
+
+import java.util.Scanner;
+
+public class FruitHarvestLaneStacy {
+   public static void main(String[] args) {
+      Scanner input = new Scanner(System.in);
+      
+      System.out.println("Welcome to FruitCo's Harvester Weekly Payment System. Proceed with transaction.");
+      System.out.println("Please enter number of harvesters to pay:");
+      int harvesters = input.nextInt();
+      
+      int count = 0;
+      
+      while (count < harvesters) {
+         count++;
+         
+         System.out.println("Enter harvester's name:");
+         String harvesterName = input.next();
+      
+         System.out.println("What fruit is " + harvesterName + " harvesting this week? (Enter 1 for lemons, 2 for limes, and 3 for apples):");
+         int fruit = input.nextInt();
+         
+         double harvestTotal = 0;
+         double fruitRate = 0;
+         //harvestTotal calculates the fruit harvest's cost, then takes a a cut for the employer, while fruitRate calculates compensation for the harvester based on which fruit they harvested.
+               if (fruit == 1) {
+         
+                  System.out.println("Please enter number of lemons harvested this week:");
+                  double lemons = input.nextDouble();
+               //I want lemons to cost 1.13 each, and have my program calculate how much a harvester has earned based on how many lemons they harvest. Same for limes, but with a different price.
+               //As well, each fruit will have part of its value taken by the company, at a rate based on the fruit harvested.
+                  harvestTotal = lemons * 1.13 - lemons * 0.257;
+                  fruitRate = lemons * 0.40;
+                  
+               } else if (fruit == 2) {
+                  
+                  System.out.println("Please enter number of limes harvested this week:");
+                  double limes = input.nextDouble();
+                  
+                  harvestTotal = limes * 0.89 - limes * 0.232;
+                  fruitRate = limes * 0.55;
+                  
+               } else if (fruit == 3) {
+                  
+                  System.out.println("Please enter number of hours spent picking apples this week:");
+                  double hours = input.nextDouble();
+                  
+                  double applePay;
+                  if (hours > 40) {
+                     double overtime = hours - 40;
+                     double regulartime = 40;
+                     applePay = (overtime * (16.28 * 1.5)) + (regulartime * 16.28);
+                  } else {
+                     applePay = hours * 16.28;
+      
+                  }
+                  harvestTotal = applePay;
+               }
+               
+               System.out.println("Harvester: " + harvesterName);
+               System.out.println("Harvest Total: $" + harvestTotal + " (Employer cut of 25.7% for lemons, 23.2% for limes.)");
+               
+               double totalPay = 0;
+               
+               totalPay = harvestTotal + fruitRate;
+               
+               System.out.println("Harvester will also receive a rate based on the type of fruit harvested as compensation for labor.");
+               System.out.println("Rates: 40 cents per lemon, 55 cents per lime, $16.28 per hour picking apples (with overtime rate of 150% pay when working over 40 hours per week).");
+               System.out.println("Harvester has earned: $" + totalPay);
+               
+               double taxedPay = 0;
+               
+               taxedPay = totalPay - totalPay * 0.10;
+               
+               System.out.println("Automatic income tax collection of 10%, payment will be: $" + taxedPay);
+               System.out.println("Thank you for using FruitCo, have a fruitastic day.");
+               
+               }
+         }
+      }         
