@@ -1,0 +1,38 @@
+// Project 6: Light Theremin
+// In this project, we will use a small speaker (sound output)
+// and a phototransistor (light input) to replicate the
+// instrument known as the theremin.
+
+// Start of code
+
+int sensorValue; // Makes an integer based on phototransistor input
+int sensorLow = 0; // Set the lowest value for the sensor
+int sensorHigh = 1023; // Set the highest value for the sensor
+const int ledPin = 13; // Flashing LED to show when calibration is done
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, HIGH);
+  
+  while (millis() < 5000) { // This while loops runs for 5000 milliseconds
+    sensorValue = analogRead(A0); // Phototransistor is connected to A0 to provide input
+    
+    if (sensorValue > sensorHigh) {
+      
+      sensorHigh = sensorValue;
+    }
+    if (sensorValue < sensorLow) {
+      sensorLow = sensorValue;
+    }
+  }
+  digitalWrite(ledPin, LOW);
+}
+
+void loop() {
+  
+  sensorValue = analogRead(A0);
+  int pitch = map(sensorValue, sensorLow, sensorHigh, 50, 4000);
+  // This section determines the pitch the Piezo will make sounds with
+  tone(8, pitch, 20);
+  delay(10);
+}
