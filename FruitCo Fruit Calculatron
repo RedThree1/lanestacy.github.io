@@ -1,4 +1,4 @@
-//This program should be able to calculate a fruit harvester's pay by collecting variables such as type of fruit harvested and quantity harvested.
+//This program will calculate a fruit harvester's pay by collecting variables such as type of fruit harvested and quantity harvested.
 
 import java.util.Scanner;
 
